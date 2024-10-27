@@ -1,127 +1,9 @@
-// Initialize EmailJS
-(function () {
-  emailjs.init("pikAPx-xP8NOB-kep"); // Replace with your actual EmailJS User ID
-})();
-
-// jQuery functions
-(function ($) {
-  "use strict";
-
-  $(window).scroll(function () {
-    if ($(".navigation").offset().top > 100) {
-      $(".navigation").addClass("fixed-nav");
-    } else {
-      $(".navigation").removeClass("fixed-nav");
-    }
-  });
-
-  $(".portfolio-gallery").each(function () {
-    $(this)
-      .find(".popup-gallery")
-      .magnificPopup({
-        type: "image",
-        gallery: {
-          enabled: true,
-        },
-      });
-  });
-
-  $("#contact-form").validate({
-    rules: {
-      user_name: {
-        required: true,
-        minlength: 4,
-      },
-      user_email: {
-        required: true,
-        email: true,
-      },
-      user_message: {
-        required: true,
-      },
-    },
-    messages: {
-      user_name: {
-        required: "Come on, you have a name don't you?",
-        minlength: "Your name must consist of at least 2 characters",
-      },
-      user_email: {
-        required: "Please put your email address",
-      },
-      user_message: {
-        required: "Put some messages here?",
-        minlength: "Your name must consist of at least 2 characters",
-      },
-    },
-    submitHandler: function (form) {
-      const user_name = document.querySelector('input[name="user_name"]').value;
-      const user_email = document.querySelector(
-        'input[name="user_email"]'
-      ).value;
-      const user_message = document.querySelector(
-        'textarea[name="user_message"]'
-      ).value;
-
-      emailjs
-        .send("YOUR_SERVICE_ID", "template_54y55lp", {
-          user_name: user_name,
-          user_email: user_email,
-          user_message: user_message,
-        })
-        .then((response) => {
-          console.log("Email sent successfully!", response);
-          $("#contact-form #success").fadeIn(); // Show success message
-          $("#contact-form #error").fadeOut();
-        })
-        .catch((error) => {
-          console.error("Failed to send email", error);
-          $("#contact-form #error").fadeIn(); // Show error message
-          $("#contact-form #success").fadeOut();
-        });
-    },
-  });
-
-  $(".testimonial-slider").slick({
-    slidesToShow: 1,
-    infinite: true,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    dots: true,
-  });
-
-  $(".portfolio-popup").magnificPopup({
-    delegate: "a",
-    type: "image",
-    gallery: {
-      enabled: true,
-    },
-    mainClass: "mfp-with-zoom",
-    navigateByImgClick: true,
-    arrowMarkup:
-      '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
-    tPrev: "Previous (Left arrow key)",
-    tNext: "Next (Right arrow key)",
-    tCounter: '<span class="mfp-counter">%curr% of %total%</span>',
-    zoom: {
-      enabled: true,
-      duration: 300,
-      easing: "ease-in-out",
-      opener: function (openerElement) {
-        return openerElement.is("img")
-          ? openerElement
-          : openerElement.find("img");
-      },
-    },
-  });
-})(jQuery);
-
-// Typing Animation
+// Typing Animation for Roles
 const roles = ["Developer", "Designer", "Programmer"];
 let currentRoleIndex = 0;
 let currentCharacterIndex = 0;
-const typingSpeed = 100;
-const delayBetweenRoles = 1500;
+const typingSpeed = 100; // Speed of typing each character
+const delayBetweenRoles = 1500; // Delay between each role
 const typingElement = document.querySelector(".typing-roles");
 
 function typeRole() {
@@ -145,6 +27,36 @@ function eraseRole() {
   }
 }
 
-window.onload = function () {
+// Ensure DOM is fully loaded before starting the typing animation
+document.addEventListener("DOMContentLoaded", () => {
   setTimeout(typeRole, 500); // Start typing after a slight delay
-};
+});
+
+// JavaScript to handle pagination
+const articlesPerPage = 3;
+let currentPage = 1;
+
+function showPage(page) {
+  const articles = document.querySelectorAll(".article");
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+  // Ensure the page is within the range
+  if (page < 1) page = 1;
+  if (page > totalPages) page = totalPages;
+  currentPage = page;
+
+  // Hide all articles
+  articles.forEach((article, index) => {
+    article.style.display = "none";
+  });
+
+  // Show only the articles for the current page
+  const start = (page - 1) * articlesPerPage;
+  const end = start + articlesPerPage;
+  for (let i = start; i < end && i < articles.length; i++) {
+    articles[i].style.display = "block";
+  }
+}
+
+// Initialize with the first page
+showPage(1);

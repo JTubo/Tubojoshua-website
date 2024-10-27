@@ -227,34 +227,11 @@ input[type="tel"]:focus {
   padding: 155px 0 100px;
 }
 
-.overly,
-.bg-4 {
-  position: relative;
-}
-.overly:before,
-.bg-4:before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: #232323;
-  opacity: 0.8;
-}
-
-.overly-2,
-.textimonial,
-.cta,
 .slider,
 .page-title {
   position: relative;
 }
-.overly-2:before,
-.textimonial:before,
-.cta:before,
+
 .slider:before,
 .page-title:before {
   content: "";
@@ -411,15 +388,19 @@ ul.dropdown-menu li {
   background: #181a23;
 }
 
+/* General Slider Styling */
 .slider {
-  background: url("../images/bg/bg-7.png") no-repeat 0% 30%;
+  background: url("../images/bg/bg-7.png") no-repeat center center;
   background-size: cover;
-  padding: 180px 0px;
+  padding: 180px 0;
+  text-align: left;
 }
+
 .slider h1 {
   font-size: 95px;
   line-height: 95px;
 }
+
 .slider span.subhead {
   color: #fff;
   letter-spacing: 5px;
@@ -428,18 +409,47 @@ ul.dropdown-menu li {
   opacity: 0.8;
 }
 
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .slider {
+    padding: 120px 0;
+    background-position: center 40%;
+  }
+  .slider h1 {
+    font-size: 70px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 768px) {
+  .slider {
+    padding: 100px 0;
+    background-position: center 50%;
+  }
+  .slider h1 {
+    font-size: 50px;
+    line-height: 1.2;
+  }
+}
+
+@media (max-width: 576px) {
+  .slider {
+    padding: 60px 0;
+    background-position: center center;
+  }
+  .slider h1 {
+    font-size: 35px;
+    line-height: 1.1;
+  }
+  .slider span.subhead {
+    font-size: 12px;
+    padding: 2px 10px;
+  }
+}
+
+/* Optional - Responsive bg-2 Class */
 .bg-2 {
-  background: url("../images/bg/bg-image-2-1.jpg") no-repeat;
-  background-size: cover;
-}
-
-.bg-3 {
-  background: url("../images/bg/bg-cta.jpg") no-repeat;
-  background-size: cover;
-}
-
-.bg-4 {
-  background: url("../images/about/img-7.jpg") no-repeat;
+  background: url("../images/bg/bg-image-2-1.png") no-repeat center center;
   background-size: cover;
 }
 
@@ -521,75 +531,6 @@ ul.dropdown-menu li {
   opacity: 0.9;
 }
 
-.team-content-overlay li a {
-  color: #fff;
-}
-.team-content-overlay li a:hover {
-  background: rgb(245, 99, 75);
-}
-
-.team-item .card-body {
-  margin-top: -120px;
-}
-
-.team-content-overlay {
-  display: inline-block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  opacity: 0;
-  width: 100%;
-  background-color: rgba(41, 40, 45, 0.85);
-  transition: opacity 0.3s ease-out;
-}
-
-.overlay-content {
-  width: 100%;
-  position: absolute;
-  left: 0;
-  padding: 25px;
-  box-sizing: border-box;
-  text-align: center;
-  top: 50%;
-  transform: translateY(-40%);
-}
-
-.team-item:hover .team-content-overlay {
-  opacity: 1;
-}
-
-.team-item:hover .card-body {
-  opacity: 0;
-}
-
-.team-wrap .card-subtitle {
-  position: relative;
-}
-.team-wrap .card-subtitle:after {
-  content: "";
-  position: absolute;
-  display: block;
-  width: 100%;
-  max-width: 26px;
-  border-top: 4px solid #ddd;
-  margin-top: 20px;
-}
-.team-wrap ul li a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid #dedede;
-  color: #232323;
-  display: inline-block;
-  text-align: center;
-  padding-top: 6px;
-}
-.team-wrap ul li a:hover {
-  background: rgb(245, 99, 75);
-  border-color: rgb(245, 99, 75);
-  color: #fff !important;
-}
-
 .divider {
   margin: 0 auto;
   background: rgb(245, 99, 75);
@@ -597,17 +538,8 @@ ul.dropdown-menu li {
   height: 4px;
 }
 
-.cta {
-  background: url("../images/bg/slide2.jpg") fixed 50% 50% no-repeat;
-  background-size: cover;
-}
-
 .w-40 {
   width: 40%;
-}
-
-.testimonial-slider .slick-dots li {
-  color: #fff;
 }
 
 .slick-dots li.slick-active button::before {
@@ -626,23 +558,6 @@ ul.dropdown-menu li {
 
 .lh-35 {
   line-height: 35px;
-}
-
-.pricing .card-body ul li {
-  font-size: 15px;
-}
-.pricing h3 {
-  padding-left: 20px;
-}
-.pricing h3 sup {
-  top: 20px;
-  left: 0px;
-}
-.pricing h3 sub {
-  font-size: 13px;
-}
-.pricing .btn-solid-border:hover {
-  color: #fff !important;
 }
 
 .map {
@@ -851,7 +766,7 @@ ul.dropdown-menu li {
 }
 
 .progress {
-  background-color: #f3f3f3;
+  background-color: #d3cfcf;
   border-radius: 5px;
   overflow: hidden;
   height: 20px;
@@ -863,7 +778,7 @@ ul.dropdown-menu li {
   text-align: center;
   line-height: 20px; /* Vertically center text */
   height: 100%;
-  transition: width 0.5s; /* Smooth transition */
+  transition: 0.5s; /* Smooth transition */
 }
 
 /*--------------------------------------------------------------
