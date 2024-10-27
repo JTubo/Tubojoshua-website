@@ -60,3 +60,36 @@ function showPage(page) {
 
 // Initialize with the first page
 showPage(1);
+
+//contact emailjs
+(function () {
+  emailjs.init("D4EFA7xsa90EaOx6e"); // Replace with your actual User ID
+})();
+
+function sendMail(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  var params = {
+    sendername: document.querySelector("#user_name").value,
+    to: document.querySelector("#user_email").value,
+    subject: "New Message from Contact Form", // Default subject
+    replyto: document.querySelector("#user_email").value,
+    message: document.querySelector("#user_message").value,
+  };
+
+  var serviceID = "service_8rf4cqi"; // Your service ID
+  var templateID = "template_ge96bnc"; // Your template ID
+
+  emailjs
+    .send(serviceID, templateID, params)
+    .then((res) => {
+      document.getElementById("success").style.display = "block";
+      document.getElementById("error").style.display = "none";
+      console.log("Email sent successfully!", res.status);
+    })
+    .catch((err) => {
+      document.getElementById("error").style.display = "block";
+      document.getElementById("success").style.display = "none";
+      console.error("Failed to send email. Error: ", err);
+    });
+}
