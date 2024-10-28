@@ -61,35 +61,26 @@ function showPage(page) {
 // Initialize with the first page
 showPage(1);
 
-//contact emailjs
-(function () {
-  emailjs.init("D4EFA7xsa90EaOx6e"); // Replace with your actual User ID
-})();
+//emailjs
 
-function sendMail(event) {
-  event.preventDefault(); // Prevent the default form submission
+function sendMail() {
+  (function () {
+    emailjs.init("D4EFA7xsa90EaOx6e");
+  })();
 
   var params = {
-    sendername: document.querySelector("#user_name").value,
-    to: document.querySelector("#user_email").value,
-    subject: "New Message from Contact Form", // Default subject
-    replyto: document.querySelector("#user_email").value,
-    message: document.querySelector("#user_message").value,
+    sendername: document.querySelector("#sendername").value,
+    to: document.querySelector("#to").value,
+    subject: document.querySelector("#subject").value,
+    replyto: document.querySelector("#replyto").value,
+    message: document.querySelector("#message").value,
   };
-
-  var serviceID = "service_8rf4cqi"; // Your service ID
-  var templateID = "template_ge96bnc"; // Your template ID
-
+  var serviceID = "service_8rf4cqi";
+  var templateID = "template_ge96bnc";
   emailjs
     .send(serviceID, templateID, params)
     .then((res) => {
-      document.getElementById("success").style.display = "block";
-      document.getElementById("error").style.display = "none";
-      console.log("Email sent successfully!", res.status);
+      alert("Email send successfully!");
     })
-    .catch((err) => {
-      document.getElementById("error").style.display = "block";
-      document.getElementById("success").style.display = "none";
-      console.error("Failed to send email. Error: ", err);
-    });
+    .catch();
 }
